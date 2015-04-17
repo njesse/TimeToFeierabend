@@ -1,0 +1,20 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "nicole.jesse@gmail.com",
+    "longName": "TimeToFeierabend",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "2",
+    "shortName": "TimeToFeierabend",
+    "uuid": "0f508932-56c9-46e4-9d20-ec767e3fd799",
+    "versionCode": 1,
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": false
+    }
+}
