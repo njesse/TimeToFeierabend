@@ -53,6 +53,7 @@ void setzeZeiten(void);
 
 
 static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
+	startzeit =time(NULL);	
 	setzeZeiten();
 anzeigeAktualisieren();
 }
@@ -78,8 +79,9 @@ void handle_init(void) {
 	
 	if (persist_exists(PERSIST_STARTZEIT)) {
 	  startzeit=persist_read_int(PERSIST_STARTZEIT);
+		setzeZeiten();
     }
-	if (persist_exists(PERSIST_ZEIT6)) {
+/*	if (persist_exists(PERSIST_ZEIT6)) {
 	  zeit6h=persist_read_int(PERSIST_ZEIT6);
     }
 	if (persist_exists(PERSIST_ZEIT6)) {
@@ -96,7 +98,7 @@ void handle_init(void) {
     }
 	if (persist_exists(PERSIST_ZEIT10)) {
 	  zeit10h=persist_read_int(PERSIST_ZEIT10);
-    }
+    }*/
 	
 	text_layerStartLabel = text_layer_create(GRect(5, 5, 2*SCREENWIDTH/3, 25));
 	text_layer_set_text(text_layerStartLabel,"Start:");
@@ -221,12 +223,12 @@ void handle_deinit(void) {
 	window_destroy(my_window);
 		
 	persist_write_int(PERSIST_STARTZEIT,startzeit);
-	persist_write_int(PERSIST_ZEIT6,zeit6h);
-	persist_write_int(PERSIST_ZEIT630,zeit630h);
-	persist_write_int(PERSIST_ZEIT8,zeit8h);
-	persist_write_int(PERSIST_ZEIT9,zeit9h);
-	persist_write_int(PERSIST_ZEIT915,zeit915h);
-	persist_write_int(PERSIST_ZEIT10,zeit10h); 
+	//persist_write_int(PERSIST_ZEIT6,zeit6h);
+	//persist_write_int(PERSIST_ZEIT630,zeit630h);
+	//persist_write_int(PERSIST_ZEIT8,zeit8h);
+	//persist_write_int(PERSIST_ZEIT9,zeit9h);
+//	persist_write_int(PERSIST_ZEIT915,zeit915h);
+//	persist_write_int(PERSIST_ZEIT10,zeit10h); 
 
 
 	
@@ -241,7 +243,7 @@ void setzeZeiten(void)
 	int m2;  // nach der 1. Pause
 	int m3;  // nach der 2. Pause
 	
-	startzeit =time(NULL);		
+	//startzeit =time(NULL);		
 	struct tm *tm_struct = localtime(&startzeit);
 	h = tm_struct->tm_hour;
 	m = tm_struct->tm_min;
