@@ -1,12 +1,7 @@
 #include <pebble.h>
 
 #define PERSIST_STARTZEIT 10
-#define PERSIST_ZEIT6 11
-#define PERSIST_ZEIT630 12
-#define PERSIST_ZEIT8 13
-#define PERSIST_ZEIT9 14
-#define PERSIST_ZEIT915 15
-#define PERSIST_ZEIT10 16
+
 #define PAUSE1 30
 #define PAUSE2 15
 	
@@ -53,15 +48,21 @@ void setzeZeiten(void);
 
 
 static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
+	// Setze aktuelle Zeit als Startzeit
 	startzeit =time(NULL);	
 	setzeZeiten();
 anzeigeAktualisieren();
 }
 
-
+static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
+	// Öffne Fenster um Startzeit einzustellen
+	startzeit =time(NULL);	
+	setzeZeiten();
+anzeigeAktualisieren();
+}
 
 static void click_config_provider(void *context) {
-
+  window_single_click_subscribe(BUTTON_ID_SELECT, select_click_handler);
   window_single_click_subscribe(BUTTON_ID_UP, up_click_handler);
 }
 
@@ -81,24 +82,7 @@ void handle_init(void) {
 	  startzeit=persist_read_int(PERSIST_STARTZEIT);
 		setzeZeiten();
     }
-/*	if (persist_exists(PERSIST_ZEIT6)) {
-	  zeit6h=persist_read_int(PERSIST_ZEIT6);
-    }
-	if (persist_exists(PERSIST_ZEIT6)) {
-	  zeit630h=persist_read_int(PERSIST_ZEIT630);
-    }
-	if (persist_exists(PERSIST_ZEIT8)) {
-	  zeit8h=persist_read_int(PERSIST_ZEIT8);
-    }
-	if (persist_exists(PERSIST_ZEIT9)) {
-	  zeit9h=persist_read_int(PERSIST_ZEIT9);
-    }
-	if (persist_exists(PERSIST_ZEIT915)) {
-	  zeit915h=persist_read_int(PERSIST_ZEIT915);
-    }
-	if (persist_exists(PERSIST_ZEIT10)) {
-	  zeit10h=persist_read_int(PERSIST_ZEIT10);
-    }*/
+
 	
 	text_layerStartLabel = text_layer_create(GRect(5, 5, 2*SCREENWIDTH/3, 25));
 	text_layer_set_text(text_layerStartLabel,"Start:");
@@ -214,23 +198,9 @@ void handle_deinit(void) {
 	text_layer_destroy(text_layer10Label);
 	text_layer_destroy(text_layer10);
 
-	
-	
-	
-	
-	
-	
 	window_destroy(my_window);
 		
 	persist_write_int(PERSIST_STARTZEIT,startzeit);
-	//persist_write_int(PERSIST_ZEIT6,zeit6h);
-	//persist_write_int(PERSIST_ZEIT630,zeit630h);
-	//persist_write_int(PERSIST_ZEIT8,zeit8h);
-	//persist_write_int(PERSIST_ZEIT9,zeit9h);
-//	persist_write_int(PERSIST_ZEIT915,zeit915h);
-//	persist_write_int(PERSIST_ZEIT10,zeit10h); 
-
-
 	
 }
 
@@ -238,7 +208,7 @@ void setzeZeiten(void)
 	{
 	int h;  
 	int hAusgleich1=0; //wird gesetzt, falls Minuten >60 nach 1. Pause
-	int hAusgleich2=0; //wird gesetzt, falls Minuten >60 nach 2: Pause
+	int hAusgleich2=0; //wird gesetzt, falls Minuten >60 nach 2. Pause
 	int m;   // vor der Pause
 	int m2;  // nach der 1. Pause
 	int m3;  // nach der 2. Pause
@@ -260,8 +230,7 @@ void setzeZeiten(void)
 		m3=m3-60;
 	}
 
-	//startzeit=  clock_to_timestamp(TODAY, h, m);	
-	
+
 	zeit6h =  clock_to_timestamp(TODAY, h+6, m);	
 	zeit630h=clock_to_timestamp(TODAY, h+6+hAusgleich1, m2);	
 	zeit8h=	clock_to_timestamp(TODAY, h+8+hAusgleich1, m2);
