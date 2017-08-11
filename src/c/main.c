@@ -83,64 +83,84 @@ void handle_init(void) {
 		setzeZeiten();
     }
 
+	int offsetRoundLabel = PBL_IF_ROUND_ELSE(50,0);
+	int offsetRoundZeit = PBL_IF_ROUND_ELSE(5,0);
+	int offsetRoundY=PBL_IF_ROUND_ELSE(5,0);
 	
-	text_layerStartLabel = text_layer_create(GRect(5, 5, 2*SCREENWIDTH/3, 25));
+	text_layerStartLabel = text_layer_create(GRect(5+offsetRoundLabel, 5+offsetRoundY, 2*SCREENWIDTH/3+offsetRoundLabel, 25+offsetRoundY));
 	text_layer_set_text(text_layerStartLabel,"Start:");
  	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(text_layerStartLabel));
 	
-	text_layerStart = text_layer_create(GRect(2*SCREENWIDTH/3, 5, SCREENWIDTH/3-5, 25));	
+	text_layerStart = text_layer_create(GRect(2*SCREENWIDTH/3-offsetRoundZeit, 5+offsetRoundY, SCREENWIDTH/3-5, 25+offsetRoundY));	
  	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(text_layerStart));
 	text_layer_set_text_alignment(text_layerStart, GTextAlignmentRight);
 	
 	
-	text_layer6Label = text_layer_create(GRect(5,25,2*SCREENWIDTH/3, 45));
+	offsetRoundLabel = PBL_IF_ROUND_ELSE(18,0);
+	offsetRoundZeit = PBL_IF_ROUND_ELSE(-5,0);
+	
+	
+	text_layer6Label = text_layer_create(GRect(5+offsetRoundLabel,25+offsetRoundY,2*SCREENWIDTH/3+offsetRoundLabel, 45+offsetRoundY));
 	text_layer_set_text(text_layer6Label,"30 min Pause:");
  	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(text_layer6Label));
 	
-	text_layer6 = text_layer_create(GRect(2*SCREENWIDTH/3, 25, SCREENWIDTH/3-5, 45));	
+	text_layer6 = text_layer_create(GRect(2*SCREENWIDTH/3-offsetRoundZeit, 25+offsetRoundY, SCREENWIDTH/3-5-offsetRoundZeit, 45+offsetRoundY));	
  	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(text_layer6));
 	text_layer_set_text_alignment(text_layer6, GTextAlignmentRight);
 	
-	
-	text_layer630Label = text_layer_create(GRect(5,45, 2*SCREENWIDTH/3, 65));
+	offsetRoundLabel = PBL_IF_ROUND_ELSE(14,0);
+	offsetRoundZeit = PBL_IF_ROUND_ELSE(-5,0);
+	text_layer630Label = text_layer_create(GRect(5+offsetRoundLabel,45+offsetRoundY, 2*SCREENWIDTH/3+offsetRoundLabel, 65+offsetRoundY));
 	text_layer_set_text(text_layer630Label,"Pause (Ende):");
  	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(text_layer630Label));
 	
-	text_layer630 = text_layer_create(GRect(2*SCREENWIDTH/3, 45, SCREENWIDTH/3-5, 65));	
+	text_layer630 = text_layer_create(GRect(2*SCREENWIDTH/3-offsetRoundZeit, 45+offsetRoundY, SCREENWIDTH/3-5-offsetRoundZeit, 65+offsetRoundY));	
  	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(text_layer630));
 	text_layer_set_text_alignment(text_layer630, GTextAlignmentRight);
 	
-	text_layer8Label = text_layer_create(GRect(5,65, 2*SCREENWIDTH/3, 85));
+	offsetRoundLabel = PBL_IF_ROUND_ELSE(80,0);
+	offsetRoundZeit = PBL_IF_ROUND_ELSE(-5,0);	
+	
+	text_layer8Label = text_layer_create(GRect(5+offsetRoundLabel,65+offsetRoundY, 2*SCREENWIDTH/3+offsetRoundLabel, 85+offsetRoundY));
 	text_layer_set_text(text_layer8Label,"8h:");
  	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(text_layer8Label));
 	
-	text_layer8 = text_layer_create(GRect(2*SCREENWIDTH/3, 65, SCREENWIDTH/3-5, 85));	
+	text_layer8 = text_layer_create(GRect(2*SCREENWIDTH/3-offsetRoundZeit, 65+offsetRoundY, SCREENWIDTH/3-5-offsetRoundZeit, 85+offsetRoundY));	
  	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(text_layer8));
 	text_layer_set_text_alignment(text_layer8, GTextAlignmentRight);
 	
-	text_layer9Label = text_layer_create(GRect(5,85, 2*SCREENWIDTH/3, 105));
+	
+	offsetRoundLabel = PBL_IF_ROUND_ELSE(18,0);
+	offsetRoundZeit = PBL_IF_ROUND_ELSE(-5,0);
+	
+	text_layer9Label = text_layer_create(GRect(5+offsetRoundLabel,85+offsetRoundY, 2*SCREENWIDTH/3+offsetRoundLabel, 105+offsetRoundY));
 	text_layer_set_text(text_layer9Label,"15 min Pause:");
  	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(text_layer9Label));
 	
-	text_layer9 = text_layer_create(GRect(2*SCREENWIDTH/3, 85, SCREENWIDTH/3-5, 105));	
+	text_layer9 = text_layer_create(GRect(2*SCREENWIDTH/3-offsetRoundZeit, 85+offsetRoundY, SCREENWIDTH/3-5-offsetRoundZeit, 105+offsetRoundY));	
  	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(text_layer9));
 	text_layer_set_text_alignment(text_layer9, GTextAlignmentRight);
 	
+	offsetRoundLabel = PBL_IF_ROUND_ELSE(13,0);
+	offsetRoundZeit = PBL_IF_ROUND_ELSE(-5,0);
 	
-	text_layer915Label = text_layer_create(GRect(5,105, 2*SCREENWIDTH/3, 125));
+	text_layer915Label = text_layer_create(GRect(5+offsetRoundLabel,105+offsetRoundY, 2*SCREENWIDTH/3+offsetRoundLabel, 125+offsetRoundY));
 	text_layer_set_text(text_layer915Label,"Pause (Ende):");
  	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(text_layer915Label));
 	
-	text_layer915 = text_layer_create(GRect(2*SCREENWIDTH/3, 105, SCREENWIDTH/3-5, 125));	
+	text_layer915 = text_layer_create(GRect(2*SCREENWIDTH/3-offsetRoundZeit, 105+offsetRoundY, SCREENWIDTH/3-5-offsetRoundZeit, 125+offsetRoundY));	
  	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(text_layer915));
 	text_layer_set_text_alignment(text_layer915, GTextAlignmentRight);
- 
 	
-	text_layer10Label = text_layer_create(GRect(5,125, 2*SCREENWIDTH/3, 145));
+	
+ 	offsetRoundLabel = PBL_IF_ROUND_ELSE(75,0);
+	offsetRoundZeit = PBL_IF_ROUND_ELSE(-5,0);
+	
+	text_layer10Label = text_layer_create(GRect(5+offsetRoundLabel,125+offsetRoundY, 2*SCREENWIDTH/3+offsetRoundLabel, 145+offsetRoundY));
 	text_layer_set_text(text_layer10Label,"10h:");
  	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(text_layer10Label));
 	
-	text_layer10 = text_layer_create(GRect(2*SCREENWIDTH/3, 125, SCREENWIDTH/3-5, 145));	
+	text_layer10 = text_layer_create(GRect(2*SCREENWIDTH/3-offsetRoundZeit, 125+offsetRoundY, SCREENWIDTH/3-5-offsetRoundZeit, 145+offsetRoundY));	
  	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(text_layer10));
 	text_layer_set_text_alignment(text_layer10, GTextAlignmentRight);
     //Change the TextLayer text to show the new time!
